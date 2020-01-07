@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<style>
+			.zujian_p{
+				height: 150px;
+				width: 200px;
+				float: left;
+				margin: 5px;
+				border: solid 2px lightgrey;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="app">
+			<!--循环绑定组件属性-->
+			<zujian v-for="item in products" v-bind:product="item"></zujian>
+		</div>
+		<script>
+			// 定義全局组件
+			Vue.component('zujian', {
+				props: ['product'],
+				template: '<div class="zujian_p" v-on:click="increaseSale">{{product.name}} 销量: {{product.sale}} </div>',
+				methods: {
+					increaseSale: function() {
+						this.product.sale++
+					}
+				}
+			})
+			
+			new Vue({
+				el: '#app',
+				data: {
+					products: [{
+							"name": "MAXFEEL休闲男士手包真皮手拿包大容量信封包手抓包夹包软韩版潮",
+							"sale": "18"
+						},
+						{
+							"name": "宾度 男士手包真皮大容量手拿包牛皮个性潮男包手抓包软皮信封包",
+							"sale": "35"
+						},
+						{
+							"name": "唯美诺新款男士手包男包真皮大容量小羊皮手拿包信封包软皮夹包潮",
+							"sale": "29"
+						}
+					]
+				}
+			})
+		</script>
+	</body>
+
+</html>

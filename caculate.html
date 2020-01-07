@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>计算属性</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			半径<input v-model="R" />
+			周长<span>{{ zhouchang }}</span>
+			面积<span>{{ mianji }}</span>
+		</div>
+		<script>
+			var vm = new Vue({
+				el : "#app",
+				data : {
+					R : 1
+				},
+				computed:{
+					zhouchang:function(){
+						return this.R*2*Math.PI
+					},
+					mianji:function(){
+						return this.R*this.R*Math.PI
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

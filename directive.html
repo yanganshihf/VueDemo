@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>自定义指令</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<div v-hcase>{{msg}}</div>
+			
+		</div>
+		<script>
+			// 自定义指令
+			// 小写转大写
+			Vue.directive("hcase",function(el){
+				// el 为
+				el.innerHTML = el.innerHTML.toLocaleUpperCase()
+				el.style.color = 'pink'
+			})
+			
+			var vm = new Vue({
+				el : "#app",
+				data : {
+					msg : 'hello'
+				}
+			})
+		</script>
+	</body>
+</html>

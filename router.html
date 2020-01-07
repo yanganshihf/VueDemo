@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="http://how2j.cn/study/vue-router.min.js"></script>
+		<style>
+			iframe{
+				width: 99%;
+				height: 500px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="app">
+			<div>
+				<router-link to="/baidu">
+					百毒
+				</router-link>
+				<router-link to="/cainiao">菜鸟</router-link>
+				<router-link to="/how">how2j</router-link>
+			</div>
+			<div>
+				<router-view></router-view>
+			</div>
+		</div>
+		<script>
+			// 定义模板
+			var baidu = {
+				template: '<iframe src="https://www.baidu.com/"></iframe>'
+			};
+			var cainiao = {
+				template: '<iframe src="https://www.runoob.com/"></iframe>'
+			};
+			var how = {
+				template: '<iframe src="https://how2j.cn/"></iframe>'
+			};
+			
+			// 定义路由
+			var routes = [{
+					path: "/",
+					redirect: "/baidu"
+				},
+				{
+					path: '/baidu',
+					component: baidu
+				},
+				{
+					path: '/cainiao',
+					component: cainiao
+				},
+				{
+					path: '/how',
+					component: how
+				}
+			]
+			
+			// 创建路由实例
+			var router = new VueRouter({
+				routes: routes
+			})
+
+			var vm = new Vue({
+				el: "#app",
+				router
+			})
+		</script>
+	</body>
+
+</html>

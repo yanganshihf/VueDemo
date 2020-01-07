@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+		  {{ message }}
+		</div>
+		
+		<div id="app2">
+			<span v-bind:title="message">
+				鼠标悬停几秒钟查看此处动态绑定的提示信息！
+			</span>
+		</div>
+		
+		<div id="app3">
+			<p v-if="seen">看见</p>
+		</div>
+		
+		<div id="app4">
+			<ol>
+				<li v-for="user in users">
+					{{ user.name }}
+				</li>
+			</ol>
+		</div>
+		
+		<div id="app5">
+			<p>{{ msg }}</p>
+			<button v-on:click="fanzhuan">反转消息</button>
+		</div>
+		
+		<div id="app6">
+			<input v-model="msg" />
+		</div>
+		
+		<div id="app7">
+			<ol>
+				<lesson_item v-for="lesson in lessons" v-bind:lesson="lesson" v-bind:key="lesson.id">
+					
+				</lesson_item>
+			</ol>
+		</div>
+	</body>
+	
+	<script>
+		// hello world
+		var app = new Vue({
+			el : '#app',
+			data : {
+				message : 'hello world'
+			}
+		})
+		// 绑定属性
+		var app2 = new Vue({
+			el : '#app2',
+			data : {
+				message : '页面加载于 ' + new Date().toLocaleTimeString()
+			}
+		})
+		// 条件语句
+		var app3 = new Vue({
+			el:"#app3",
+			data : {
+				seen : false
+			}
+		})
+		// 循环语句
+		var app4 = new Vue({
+			el:"#app4",
+			data : {
+				users : [
+					{name:'张三'},
+					{name:'李四'},
+					{name:'王五'}
+				]
+			}
+		});
+		// 添加数据
+		app4.users.push({name:'小六'})
+		
+		// 方法
+		var app5 = new Vue({
+			el:"#app5",
+			data : {
+				msg : "hello"
+			},
+			methods : {
+				fanzhuan : function(){
+					this.msg = this.msg.split("").reverse().join("")
+				}
+			}
+		});
+		// 双向绑定
+		var app6 = new Vue({
+			el:"#app6",
+			data : {
+				msg : "双向绑定"
+			}
+		});
+		
+		// 组件
+		Vue.component('lesson_item',{
+			props : ['lesson'],
+			template : '<li>{{ lesson.name }}</li>'
+		});
+		
+		var app7 = new Vue({
+			el:"#app7",
+			data : {
+				lessons : [
+					{id:0,name:'语文'},
+					{id:1,name:'数学'},
+					{id:2,name:'英语'}
+				]
+			}
+		});
+	</script>
+</html>

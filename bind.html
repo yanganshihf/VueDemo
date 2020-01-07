@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>绑定属性</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	</head>
+	<body >
+		<div id="myapp">
+			<a v-bind:href="baidu" v-bind:style="red" v-bind:title="myTitle">百度一下,你就上当</a>
+		</div>
+		
+		<script>
+			var vm = new Vue({
+				el : '#myapp',
+				data : {
+					baidu : 'https://www.baidu.com',
+					red : {
+						color : "red"
+					},
+					myTitle : "千万不要点"
+				}
+			})
+		</script>
+	</body>
+</html>
